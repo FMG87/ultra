@@ -1,147 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Ultra</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,viewport-fit=cover" />
+<title>Ultra</title>
 
-  <!-- PWA -->
-  <meta name="theme-color" content="#4b21ff" />
-  <link rel="manifest" href="/manifest.json" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#4318ff" />
 
-  <!-- iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <link rel="apple-touch-icon" href="Ultra.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="Ultra.png" />
 
-  <style>
-    html, body {
-      margin: 0; padding: 0;
-      height: 100%; width: 100%;
-      background:#4318ff;
-      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
+<style>
 
-    .wrapper {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh; width:100vw;
-      padding:10px; gap:14px;
-      box-sizing:border-box;
-    }
-    @supports (height:100dvh){
-      .wrapper {height:100dvh;}
-    }
+  /* ====================== 🔥 DEGRADÊ APLICADO AQUI 🔥 ===================== */
+  html,body{
+    margin:0;padding:0;height:100%;width:100%;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    background: linear-gradient(135deg,#3000ff,#7429ff,#ff4fd8);
+    background-size:300% 300%;
+    animation:bgMove 12s ease infinite;
+  }
+  @keyframes bgMove{
+     0%{background-position:0% 50%;}
+     50%{background-position:100% 50%;}
+     100%{background-position:0% 50%;}
+  }
+  /* ======================================================================== */
 
-    .app-column{
-      flex:1; max-width:480px; height:100%;
-      border-radius:20px; overflow:hidden;
-      background:#000; display:flex; flex-direction:column;
-      box-shadow:0 0 22px rgba(0,0,0,.45);
-    }
+  .wrapper{
+    display:flex;align-items:center;justify-content:center;
+    height:100vh;width:100vw;padding:10px;gap:14px;box-sizing:border-box;
+  }
+  @supports(height:100dvh){.wrapper{height:100dvh;}}
 
-    iframe{
-      flex:1; width:100%; border:none;
-      display:block;
-    }
+  .app-column{
+    flex:1;max-width:480px;height:100%;
+    background:#000;border-radius:20px;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 0 22px rgba(0,0,0,.55);
+  }
+  iframe{flex:1;width:100%;border:none;}
 
-    /* QR Codes Laterais */
-    .qr-column{
-      width:160px; display:flex; justify-content:center; align-items:center;
-    }
-    .qr-box{
-      background:#fff; border-radius:16px; padding:14px;
-      box-shadow:0 0 12px rgba(0,0,0,.35);
-      text-align:center;
-    }
-    .qr-title{
-      font-size:15px; font-weight:700; margin-bottom:6px;
-      display:flex; justify-content:center; align-items:center; gap:6px;
-    }
-    .icon-pill{
-      height:24px; width:24px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-size:12px; font-weight:bold; color:#fff;
-    }
-    .android{background:#3ddc84;color:#000;}
-    .apple{background:#000;}
+  /* QR codes desktop */
+  .qr-column{width:160px;display:flex;justify-content:center;align-items:center;}
+  .qr-box{
+    background:#fff;border-radius:16px;padding:14px;
+    box-shadow:0 0 14px rgba(0,0,0,.40);text-align:center;
+  }
+  .qr-title{font-size:15px;font-weight:700;margin-bottom:6px;display:flex;gap:6px;justify-content:center;align-items:center;}
+  .icon-pill{height:24;width:24;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:12px;color:#fff;}
+  .android{background:#3ddc84;color:#000;}
+  .apple{background:#000;}
 
-    .qr-box img{
-      width:125px; height:125px;
-    }
-    .qr-note{
-      margin-top:6px; font-size:11px; color:#555;
-    }
+  .qr-box img{width:125px;height:125px;}
+  .qr-note{font-size:11px;color:#444;margin-top:6px;}
 
-    /* Mensagem mobile */
-    .mobile-note{
-      display:none;
-      background:#f5f0ff; color:#2e0ea8;
-      font-size:11px; text-align:center;
-      padding:6px; border-bottom:1px solid #cdb9ff;
-    }
+  /* Mobile */
+  .mobile-note{display:none;background:#fff3;font-size:11px;text-align:center;color:#ffe;border-bottom:1px solid #ffffff33;}
 
-    /* MOBILE MODE */
-    @media(max-width:900px){
-      .qr-column{display:none;}
-      .wrapper{padding:0;}
-      .app-column{
-        max-width:none; width:100vw;
-        height:100vh; border-radius:0; box-shadow:none;
-      }
-      iframe{height:100%;}
-      @supports(height:100dvh){
-        .app-column{height:100dvh;}
-      }
-      .mobile-note{display:block;}
-    }
-  </style>
+  @media(max-width:900px){
+    .qr-column{display:none;}
+    .wrapper{padding:0;}
+    .app-column{max-width:none;width:100vw;height:100vh;border-radius:0;box-shadow:none;}
+    @supports(height:100dvh){.app-column{height:100dvh;}}
+    .mobile-note{display:block;}
+  }
+</style>
 
-  <script>
-    const ANDROID="https://play.google.com/store/apps/details?id=com.microsoft.msapps";
-    const IOS="https://apps.apple.com/br/app/power-apps/id1047318566";
+<script>
+ const ANDROID="https://play.google.com/store/apps/details?id=com.microsoft.msapps";
+ const IOS="https://apps.apple.com/br/app/power-apps/id1047318566";
 
-    window.onload=()=>{
-      document.getElementById("qrAndroid").src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(ANDROID);
-      document.getElementById("qrIOS").src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(IOS);
-    }
+ window.onload=()=>{
+   document.getElementById("qrAndroid").src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(ANDROID);
+   document.getElementById("qrIOS").src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(IOS);
+ }
 
-    if("serviceWorker" in navigator){
-      navigator.serviceWorker.register("/sw.js").catch(()=>{});
-    }
-  </script>
+ if("serviceWorker" in navigator){ navigator.serviceWorker.register("sw.js"); }
+</script>
 </head>
+
 <body>
 
-  <div class="wrapper">
+<div class="wrapper">
 
-    <!-- QR ANDROID -->
-    <div class="qr-column">
-      <div class="qr-box">
-        <div class="qr-title"><span class="icon-pill android">🤖</span> Android</div>
-        <img id="qrAndroid">
-        <div class="qr-note">Baixar Microsoft Power Apps</div>
-      </div>
+  <div class="qr-column">
+    <div class="qr-box">
+      <div class="qr-title"><span class="icon-pill android">🤖</span> Android</div>
+      <img id="qrAndroid"><div class="qr-note">Baixar Microsoft Power Apps</div>
     </div>
-
-    <!-- APP ULTRA -->
-    <div class="app-column">
-      <div class="mobile-note">Para melhor experiência, instale o Power Apps.</div>
-
-      <iframe src="https://apps.powerapps.com/play/e/default-25285881-44cf-4c96-af0c-36d28792f507/a/e76d0789-b23e-4533-9b0c-cd60d0a728a1?source=portal&screenColor=rgba(0,0,0,1)&mode=fullscreen&chrome=0&hideNavBar=true">
-      </iframe>
-    </div>
-
-    <!-- QR APPLE -->
-    <div class="qr-column">
-      <div class="qr-box">
-        <div class="qr-title"><span class="icon-pill apple"></span> Apple</div>
-        <img id="qrIOS">
-        <div class="qr-note">Baixar Microsoft Power Apps</div>
-      </div>
-    </div>
-
   </div>
+
+  <div class="app-column">
+    <div class="mobile-note">Para melhor experiência instale o Power Apps.</div>
+
+    <iframe src="https://apps.powerapps.com/play/e/default-25285881-44cf-4c96-af0c-36d28792f507/a/e76d0789-b23e-4533-9b0c-cd60d0a728a1?source=portal&screenColor=rgba(0,0,0,1)&mode=fullscreen&chrome=0&hideNavBar=true"></iframe>
+  </div>
+
+  <div class="qr-column">
+    <div class="qr-box">
+      <div class="qr-title"><span class="icon-pill apple"></span> Apple</div>
+      <img id="qrIOS"><div class="qr-note">Baixar Microsoft Power Apps</div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
